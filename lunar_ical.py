@@ -223,13 +223,16 @@ def gen_cal(start, end, fp):
 
     lines = [ICAL_HEAD]
     oneday = timedelta(days=1)
+    mon = ''
     for r in rows:
         dt = datetime.strptime(r['date'], '%Y-%m-%d')
-
         if r['lunardate'] in CN_MON.keys():
-            ld = ['%s%s' % (lunaryear(r['date']), r['lunardate'])]
+            mon = r['lunardate']
+            # ld = ['%s%s' % (lunaryear(r['date']), r['lunardate'])]
+            ld = ['%s%s' % (mon, u'初一')]
         else:
-            ld = [r['lunardate']]
+            # ld = [r['lunardate']]
+            ld = ['%s%s' % (mon, r['lunardate'])]
         if r['holiday']:
             ld.append(r['holiday'])
         if r['jieqi']:
