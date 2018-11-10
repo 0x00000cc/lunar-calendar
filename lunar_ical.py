@@ -233,10 +233,10 @@ def gen_cal(start, end, fp):
         else:
             # ld = [r['lunardate']]
             ld = ['%s%s' % (mon, r['lunardate'])]
-        if r['holiday']:
-            ld.append(r['holiday'])
-        if r['jieqi']:
-            ld.append(r['jieqi'])
+        # if r['holiday']:
+        #     ld.append(r['holiday'])
+        # if r['jieqi']:
+        #     ld.append(r['jieqi'])
         uid = '%s-lc@infinet.github.io' % r['date']
         summary = ' '.join(ld)
         utcstamp = datetime.utcnow().strftime('%Y%m%dT%H%M%SZ')
