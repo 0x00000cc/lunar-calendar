@@ -118,10 +118,11 @@ def query_db(query, args=(), one=False):
 
 class HTTPCompress(urllib2.BaseHandler):
     """A handler to add gzip capabilities to urllib2 requests """
+
     def http_request(self, req):
         req.add_header("Accept-Encoding", "gzip, deflate")
         req.add_header("User-Agent",
-       "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.2.13) Gecko/20101203")
+                       "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.2.13) Gecko/20101203")
         return req
 
     def http_response(self, req, resp):
@@ -146,10 +147,10 @@ def browser(proxy=None):
     proxy_support = urllib2.ProxyHandler(proxy)
     if proxy:
         opener = urllib2.build_opener(gzip_support, urllib2.HTTPHandler,
-                                     cookie_support, proxy_support)
+                                      cookie_support, proxy_support)
     else:
         opener = urllib2.build_opener(gzip_support, urllib2.HTTPHandler,
-                                                     cookie_support)
+                                      cookie_support)
     return opener
 
 
@@ -241,7 +242,7 @@ def gen_cal(start, end, fp):
         summary = ' '.join(ld)
         utcstamp = datetime.utcnow().strftime('%Y%m%dT%H%M%SZ')
         line = ICAL_SEC % (utcstamp, uid, dt.strftime('%Y%m%d'),
-                       (dt + oneday).strftime('%Y%m%d'), summary)
+                           (dt + oneday).strftime('%Y%m%d'), summary)
         lines.append(line.encode('utf8'))
     lines.append(ICAL_END)
     outputf = open(fp, 'w')
@@ -291,7 +292,7 @@ def gen_cal_jieqi_only(start, end, fp):
         summary = ' '.join(ld)
         utcstamp = datetime.utcnow().strftime('%Y%m%dT%H%M%SZ')
         line = ICAL_SEC % (utcstamp, uid, dt.strftime('%Y%m%d'),
-                       (dt + oneday).strftime('%Y%m%d'), summary)
+                           (dt + oneday).strftime('%Y%m%d'), summary)
         lines.append(line.encode('utf8'))
     lines.append(ICAL_END)
     outputf = open(fp, 'w')
@@ -334,7 +335,7 @@ def update_holiday():
         try:
             d = CN_DAY[r['lunardate']]
         except KeyError:
-            #print 'debug: %s %s' % (r['date'], r['lunardate'])
+            # print 'debug: %s %s' % (r['date'], r['lunardate'])
             m = CN_MON[r['lunardate']]
             d = 1
 
@@ -406,13 +407,13 @@ def main():
     end = '%d-12-31' % (cy + 1)
 
     helpmsg = ('Usage: lunar_ical.py --start=startdate --end=enddate --jieqi\n'
-'Example: \n'
-'\tlunar_ical.py --start=2013-10-31 --end=2015-12-31\n'
-'Or to generate Jieqi only:\n'
-'\tlunar_ical.py --start=2013-10-31 --end=2015-12-31 --jieqi\n'
-'Or,\n'
-'\tlunar_ical.py without option will generate the calendar from previous year '
-'to the end of the next year')
+               'Example: \n'
+               '\tlunar_ical.py --start=2013-10-31 --end=2015-12-31\n'
+               'Or to generate Jieqi only:\n'
+               '\tlunar_ical.py --start=2013-10-31 --end=2015-12-31 --jieqi\n'
+               'Or,\n'
+               '\tlunar_ical.py without option will generate the calendar from previous year '
+               'to the end of the next year')
 
     try:
         opts, args = getopt.getopt(sys.argv[1:], 'h',
@@ -480,7 +481,7 @@ def verify_lunarcalendar():
             if aalc[i]['jieqi']:
                 aaldate = '%s %s' % (aalc[i]['lunardate'], aalc[i]['jieqi'])
             hkoday, hkoldate = hko[i]
-            #print aaday, aaldate
+            # print aaday, aaldate
             if aaday != hkoday or aaldate != hkoldate:
                 print 'AA %s %s, HKO %s %s' % (aaday, aaldate, hkoday,
                                                hkoldate)
@@ -489,4 +490,4 @@ def verify_lunarcalendar():
 
 if __name__ == "__main__":
     main()
-    #verify_lunarcalendar()
+    # verify_lunarcalendar()
