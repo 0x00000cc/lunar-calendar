@@ -40,7 +40,7 @@ ICAL_HEAD = ('BEGIN:VCALENDAR\n'
              'VERSION:2.0\n'
              'CALSCALE:GREGORIAN\n'
              'METHOD:PUBLISH\n'
-             'X-WR-CALNAME:农历\n'
+             'X-WR-CALNAME:中国农历\n'
              'X-WR-TIMEZONE:Asia/Shanghai\n'
              'X-WR-CALDESC:中国农历1901-2100, 包括节气. 数据来自香港天文台')
 
